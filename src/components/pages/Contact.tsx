@@ -3,36 +3,36 @@ import { motion } from "framer-motion";
 import { Button } from "@/components/ui/button";
 import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
-import { Mail, Phone, MapPin, Send } from "lucide-react";
+import { Mail, Phone, MapPin, Send, ExternalLink } from "lucide-react";
 
 const Contact = () => {
-  const scriptURL =
-    "https://script.google.com/macros/s/AKfycbxKCulg87tGrqtJ-xbtCNsJCQTieBQkW0JogwYXvLvztSSMLv2SH_tnawKGBntbXesu/exec";
-
-  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
+  const handleSubmit = (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
     const form = e.target as HTMLFormElement;
+    const scriptURL =
+      "https://script.google.com/macros/s/AKfycbxKCulg87tGrqtJ-xbtCNsJCQTieBQkW0JogwYXvLvztSSMLv2SH_tnawKGBntbXesu/exec";
 
-    try {
-      const response = await fetch(scriptURL, {
-        method: "POST",
-        body: new FormData(form),
+    // Log form data to check what's being sent
+    const formData = new FormData(form);
+    console.log("Form data:", Object.fromEntries(formData));
+
+    fetch(scriptURL, {
+      method: "POST",
+      body: formData,
+      mode: "no-cors", // Add this line
+    })
+      .then(() => {
+        alert("Thank you! Form is submitted successfully");
+        form.reset();
+      })
+      .catch((error) => {
+        console.error("Error!", error);
+        alert("Error submitting form. Please try again.");
       });
-
-      if (response.ok) {
-        alert("Thank you! Form is submitted");
-        window.location.reload();
-      } else {
-        throw new Error("Network response was not ok");
-      }
-    } catch (error) {
-      console.error("Error!", error);
-      alert("There was an error submitting the form");
-    }
   };
 
   return (
-    <section className="min-h-screen w-full bg-background px-4 py-20 md:px-6 lg:px-8">
+    <section className="w-full bg-background px-4 py-12 md:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -41,14 +41,14 @@ const Contact = () => {
           className="text-center"
         >
           <h2 className="text-3xl font-bold tracking-tight md:text-4xl">
-            Contact Me
+            Get In Touch
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Get in touch with me for any questions or opportunities.
+            Have a question or want to work together? I'd love to hear from you.
           </p>
         </motion.div>
 
-        <div className="mt-12 grid gap-8 lg:grid-cols-2">
+        <div className="mt-8 grid gap-8 lg:grid-cols-2">
           {/* Contact Information */}
           <motion.div
             initial={{ opacity: 0, x: -20 }}
@@ -56,30 +56,55 @@ const Contact = () => {
             transition={{ delay: 0.3 }}
             className="space-y-6"
           >
-            <div className="rounded-lg bg-card p-6 shadow-lg">
-              <h3 className="text-xl font-semibold">Contact Information</h3>
-              <div className="mt-6 space-y-4">
-                <div className="flex items-center gap-4">
-                  <Mail className="h-5 w-5 text-primary" />
-                  <p className="text-muted-foreground">
-                    gauravgoel0008@gmail.com
-                  </p>
-                </div>
-                <div className="flex items-center gap-4">
-                  <Phone className="h-5 w-5 text-primary" />
-                  <p className="text-muted-foreground">+91-8864998737</p>
-                </div>
+            <div className="rounded-xl bg-card p-8 shadow-lg ring-1 ring-gray-200/50">
+              <h3 className="text-xl font-semibold">Contact Details</h3>
+              <div className="mt-6 space-y-6">
+                <a
+                  href="mailto:gauravgoel0008@gmail.com"
+                  className="group flex items-center gap-4 transition-colors hover:text-primary"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                    <Mail className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Email</p>
+                    <p className="text-sm text-muted-foreground">
+                      gauravgoel0008@gmail.com
+                    </p>
+                  </div>
+                  <ExternalLink className="ml-auto h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                </a>
+
+                <a
+                  href="tel:+918864998737"
+                  className="group flex items-center gap-4 transition-colors hover:text-primary"
+                >
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                    <Phone className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Phone</p>
+                    <p className="text-sm text-muted-foreground">
+                      +91-8864998737
+                    </p>
+                  </div>
+                  <ExternalLink className="ml-auto h-4 w-4 opacity-0 transition-opacity group-hover:opacity-100" />
+                </a>
+
                 <div className="flex items-start gap-4">
-                  <MapPin className="h-5 w-5 text-primary mt-1" />
-                  <p className="text-muted-foreground">
-                    Near, MAHARAJA AGRASEN INSTITUTE OF TECHNOLOGY,
-                    <br />
-                    Pocket 5, Sector 22, Rohini,
-                    <br />
-                    Delhi, India
-                    <br />
-                    110086
-                  </p>
+                  <div className="flex h-12 w-12 items-center justify-center rounded-full bg-primary/10">
+                    <MapPin className="h-5 w-5 text-primary" />
+                  </div>
+                  <div>
+                    <p className="font-medium">Location</p>
+                    <p className="text-sm text-muted-foreground">
+                      Near, MAHARAJA AGRASEN INSTITUTE OF TECHNOLOGY,
+                      <br />
+                      Pocket 5, Sector 22, Rohini,
+                      <br />
+                      Delhi, India - 110086
+                    </p>
+                  </div>
                 </div>
               </div>
             </div>
@@ -91,58 +116,65 @@ const Contact = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <form onSubmit={handleSubmit} className="contactUsForm space-y-6">
+            <form
+              name="submit-to-google-sheet"
+              onSubmit={handleSubmit}
+              className="contactUsForm space-y-6 rounded-xl bg-card p-8 shadow-lg ring-1 ring-gray-200/50"
+            >
               <div className="space-y-2">
-                <label htmlFor="Name" className="text-sm font-medium">
+                <label htmlFor="name" className="text-sm font-medium">
                   Name
                 </label>
                 <Input
-                  id="Name"
-                  name="Name"
-                  placeholder="Your name"
+                  id="name"
+                  name="name"
+                  placeholder="Gaurav Goel"
                   required
                   className="w-full"
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="Phone" className="text-sm font-medium">
+                <label htmlFor="phone" className="text-sm font-medium">
                   Phone
                 </label>
                 <Input
-                  id="Phone"
-                  name="Phone"
+                  id="phone"
+                  name="phone"
                   type="tel"
-                  placeholder="Your phone number"
+                  placeholder="+91 XXXXX XXXXX"
                   required
                   className="w-full"
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="Email" className="text-sm font-medium">
+                <label htmlFor="email" className="text-sm font-medium">
                   Email
                 </label>
                 <Input
-                  id="Email"
-                  name="Email"
+                  id="email"
+                  name="email"
                   type="email"
-                  placeholder="Your email"
+                  placeholder="gaurav@gmail.com"
                   required
                   className="w-full"
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="Message" className="text-sm font-medium">
+                <label htmlFor="message" className="text-sm font-medium">
                   Message
                 </label>
                 <Textarea
-                  id="Message"
-                  name="Message"
-                  placeholder="Your message"
+                  id="message"
+                  name="message"
+                  placeholder="Your message here..."
                   required
                   className="min-h-[150px] w-full"
                 />
               </div>
-              <Button type="submit" className="w-full">
+              <Button
+                type="submit"
+                className="w-full transition-all duration-300 hover:scale-[1.02]"
+              >
                 <Send className="mr-2 h-4 w-4" />
                 Send Message
               </Button>

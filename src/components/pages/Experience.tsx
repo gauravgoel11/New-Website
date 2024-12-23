@@ -23,7 +23,7 @@ const experiences: Experience[] = [
 
 const Experience = () => {
   return (
-    <section className="min-h-screen w-full bg-background px-4 py-20 md:px-6 lg:px-8">
+    <section className="w-full bg-background px-4 py-12 md:px-6 lg:px-8">
       <div className="mx-auto max-w-4xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -42,12 +42,12 @@ const Experience = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="mt-12 space-y-8"
+          className="mt-8 space-y-6"
         >
           {experiences.map((exp, index) => (
             <div
               key={index}
-              className="rounded-lg bg-card p-6 shadow-lg transition-all duration-300 hover:shadow-xl"
+              className="rounded-xl bg-card p-6 shadow-lg ring-1 ring-gray-200/50 transition-all duration-300 hover:shadow-xl"
             >
               <div className="flex flex-col justify-between gap-4 md:flex-row md:items-center">
                 <div>

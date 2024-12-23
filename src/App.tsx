@@ -1,12 +1,12 @@
 import { Suspense } from "react";
-import { Routes, Route } from "react-router-dom";
 import NavBar from "./components/navigation/NavBar";
-import Home from "./components/home";
+import HeroSection from "./components/hero/HeroSection";
 import About from "./components/pages/About";
 import Projects from "./components/pages/Projects";
 import Skills from "./components/pages/Skills";
 import Experience from "./components/pages/Experience";
 import Contact from "./components/pages/Contact";
+import { Toaster } from "./components/ui/toaster";
 
 function App() {
   const handleDownloadResume = () => {
@@ -23,17 +23,28 @@ function App() {
           </div>
         }
       >
-        <main className="mx-auto max-w-[2000px] pt-16">
-          <Routes>
-            <Route path="/" element={<Home />} />
-            <Route path="/about" element={<About />} />
-            <Route path="/projects" element={<Projects />} />
-            <Route path="/skills" element={<Skills />} />
-            <Route path="/experience" element={<Experience />} />
-            <Route path="/contact" element={<Contact />} />
-          </Routes>
+        <main className="mx-auto max-w-[2000px]">
+          <section id="home" className="scroll-mt-16">
+            <HeroSection />
+          </section>
+          <section id="about" className="scroll-mt-16">
+            <About />
+          </section>
+          <section id="projects" className="scroll-mt-16">
+            <Projects />
+          </section>
+          <section id="skills" className="scroll-mt-16">
+            <Skills />
+          </section>
+          <section id="experience" className="scroll-mt-16">
+            <Experience />
+          </section>
+          <section id="contact" className="scroll-mt-16">
+            <Contact />
+          </section>
         </main>
       </Suspense>
+      <Toaster />
     </div>
   );
 }

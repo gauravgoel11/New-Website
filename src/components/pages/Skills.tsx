@@ -36,7 +36,7 @@ const skills: Skill[] = [
 
 const Skills = () => {
   return (
-    <section className="min-h-screen w-full bg-background px-4 py-20 md:px-6 lg:px-8">
+    <section className="w-full bg-background px-4 py-12 md:px-6 lg:px-8">
       <div className="mx-auto max-w-6xl">
         <motion.div
           initial={{ opacity: 0, y: 20 }}
@@ -55,12 +55,12 @@ const Skills = () => {
           initial={{ opacity: 0 }}
           animate={{ opacity: 1 }}
           transition={{ delay: 0.3 }}
-          className="mt-12 grid gap-8 md:grid-cols-2 lg:grid-cols-4"
+          className="mt-8 grid gap-6 md:grid-cols-2 lg:grid-cols-4"
         >
           {skills.map((skillGroup, index) => (
             <div
               key={index}
-              className="rounded-lg bg-card p-6 shadow-lg transition-transform duration-300 hover:scale-105"
+              className="rounded-xl bg-card p-6 shadow-lg ring-1 ring-gray-200/50 transition-transform duration-300 hover:scale-[1.02]"
             >
               <h3 className="text-xl font-semibold">{skillGroup.category}</h3>
               <ul className="mt-4 space-y-2">

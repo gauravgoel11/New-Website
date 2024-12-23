@@ -1,6 +1,7 @@
 import React from "react";
 import { cn } from "@/lib/utils";
 import { Avatar, AvatarFallback, AvatarImage } from "@/components/ui/avatar";
+import profileImage from "/My Image2.jpg";
 
 interface ProfileImageProps {
   imageUrl?: string;
@@ -19,7 +20,7 @@ const sizeClasses = {
 };
 
 const ProfileImage = ({
-  imageUrl = "https://api.dicebear.com/7.x/avataaars/svg?seed=gaurav",
+  imageUrl = profileImage,
   altText = "Gaurav Goel - Software Developer",
   className = "",
   size = "xl",

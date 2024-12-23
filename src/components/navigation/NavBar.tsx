@@ -1,9 +1,9 @@
 import React, { useState, useEffect } from "react";
-import { useNavigate, useLocation } from "react-router-dom";
 import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Download, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
+import resumePdf from "/Gaurav_Goel_Resume.pdf";
 
 interface NavItem {
   label: string;
@@ -18,34 +18,76 @@ interface NavBarProps {
 
 const NavBar = ({
   items = [
-    { label: "Home", href: "/" },
-    { label: "About", href: "/about" },
-    { label: "Projects", href: "/projects" },
-    { label: "Skills", href: "/skills" },
-    { label: "Experience", href: "/experience" },
-    { label: "Contact", href: "/contact" },
+    { label: "Home", href: "#home" },
+    { label: "About", href: "#about" },
+    { label: "Projects", href: "#projects" },
+    { label: "Skills", href: "#skills" },
+    { label: "Experience", href: "#experience" },
+    { label: "Contact", href: "#contact" },
   ],
-  onDownloadResume = () => console.log("Download resume clicked"),
   className,
 }: NavBarProps) => {
   const [isScrolled, setIsScrolled] = useState(false);
-  const navigate = useNavigate();
-  const location = useLocation();
+  const [isVisible, setIsVisible] = useState(true);
+  const [activeSection, setActiveSection] = useState("home");
+  const [lastScrollY, setLastScrollY] = useState(0);
+
+  const handleDownloadResume = () => {
+    const link = document.createElement("a");
+    link.href = resumePdf;
+    link.download = "Gaurav_Goel_Resume.pdf";
+    document.body.appendChild(link);
+    link.click();
+    document.body.removeChild(link);
+  };
+
+  const scrollToSection = (href: string) => {
+    const element = document.querySelector(href);
+    if (element) {
+      element.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   useEffect(() => {
     const handleScroll = () => {
-      setIsScrolled(window.scrollY > 20);
+      const currentScrollY = window.scrollY;
+
+      // Handle navbar visibility
+      if (currentScrollY > lastScrollY) {
+        setIsVisible(false); // Scrolling down - hide navbar
+      } else {
+        setIsVisible(true); // Scrolling up - show navbar
+      }
+
+      setLastScrollY(currentScrollY);
+      setIsScrolled(currentScrollY > 20);
+
+      // Update active section
+      const sections = items.map((item) => item.href.substring(1));
+      const currentSection = sections.find((section) => {
+        const element = document.getElementById(section);
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          return rect.top <= 100 && rect.bottom >= 100;
+        }
+        return false;
+      });
+
+      if (currentSection) {
+        setActiveSection(currentSection);
+      }
     };
 
     window.addEventListener("scroll", handleScroll);
     return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+  }, [items, lastScrollY]);
 
   return (
     <nav
       className={cn(
         "fixed top-0 left-0 right-0 z-50 bg-background/80 backdrop-blur-sm transition-all duration-300",
         isScrolled ? "shadow-md" : "",
+        isVisible ? "translate-y-0" : "-translate-y-full",
         className,
       )}
     >
@@ -53,7 +95,7 @@ const NavBar = ({
         <div className="flex h-16 items-center justify-between">
           {/* Logo/Brand */}
           <button
-            onClick={() => navigate("/")}
+            onClick={() => scrollToSection("#home")}
             className="text-xl font-bold hover:text-primary"
           >
             Portfolio
@@ -64,10 +106,10 @@ const NavBar = ({
             {items.map((item) => (
               <button
                 key={item.label}
-                onClick={() => navigate(item.href)}
+                onClick={() => scrollToSection(item.href)}
                 className={cn(
                   "text-sm font-medium transition-colors hover:text-primary",
-                  location.pathname === item.href
+                  activeSection === item.href.substring(1)
                     ? "text-primary"
                     : "text-muted-foreground",
                 )}
@@ -76,7 +118,7 @@ const NavBar = ({
               </button>
             ))}
             <Button
-              onClick={onDownloadResume}
+              onClick={handleDownloadResume}
               variant="default"
               size="sm"
               className="ml-4"
@@ -100,11 +142,11 @@ const NavBar = ({
                     <button
                       key={item.label}
                       onClick={() => {
-                        navigate(item.href);
+                        scrollToSection(item.href);
                       }}
                       className={cn(
                         "p-2 text-sm font-medium transition-colors hover:text-primary",
-                        location.pathname === item.href
+                        activeSection === item.href.substring(1)
                           ? "text-primary"
                           : "text-muted-foreground",
                       )}
@@ -113,7 +155,7 @@ const NavBar = ({
                     </button>
                   ))}
                   <Button
-                    onClick={onDownloadResume}
+                    onClick={handleDownloadResume}
                     variant="default"
                     size="sm"
                     className="mt-4"
