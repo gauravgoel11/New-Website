@@ -9,33 +9,33 @@ interface Skill {
 const skills: Skill[] = [
   {
     category: "Frontend",
-    items: [
-      "React",
-      "TypeScript",
-      "Next.js",
-      "Tailwind CSS",
-      "HTML5/CSS3",
-      "JavaScript",
-    ],
+    items: ["React", "HTML5", "CSS3", "JavaScript", "PyQt", "UI/UX Design"],
   },
   {
     category: "Backend",
     items: [
-      "Node.js",
-      "Express",
       "Python",
-      "Django",
+      "Flask",
+      "Node.js",
       "RESTful APIs",
-      "GraphQL",
+      "SQL",
+      "Database Design",
     ],
   },
   {
-    category: "Database",
-    items: ["PostgreSQL", "MongoDB", "Redis", "MySQL", "Prisma", "Supabase"],
+    category: "AI & Machine Learning",
+    items: [
+      "Scikit-learn",
+      "TensorFlow",
+      "Neural Networks",
+      "Data Analysis",
+      "Computer Vision",
+      "NLP",
+    ],
   },
   {
     category: "DevOps & Tools",
-    items: ["Git", "Docker", "AWS", "CI/CD", "Linux", "Webpack"],
+    items: ["Git", "VS Code", "PyCharm", "Jupyter", "Linux", "AWS"],
   },
 ];
 
@@ -52,7 +52,8 @@ const Skills = () => {
             Skills
           </h2>
           <p className="mt-4 text-lg text-muted-foreground">
-            Here's an overview of my technical skills and expertise.
+            Here's an overview of my technical skills in software development,
+            AI, and machine learning.
           </p>
         </motion.div>
 
