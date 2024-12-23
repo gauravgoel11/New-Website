@@ -31,12 +31,51 @@ const About = () => {
           </div>
 
           <div className="rounded-lg bg-card p-6 shadow-lg">
-            <h3 className="text-xl font-semibold">Approach</h3>
-            <p className="mt-4 text-muted-foreground">
-              I'm driven by a curiosity for new challenges and love bringing
-              ideas to life through coding. When I'm not working on projects, I
-              enjoy reading, hiking, and exploring emerging tech trends.
-            </p>
+            <h3 className="text-xl font-semibold">Education</h3>
+            <div className="mt-4 space-y-2">
+              <p className="font-medium">
+                Maharaja Agrasen Institute of Technology (MAIT), GGSIPU
+              </p>
+              <p className="text-muted-foreground">
+                Bachelor of Technology in Artificial Intelligence and Data
+                Science
+              </p>
+              <p className="text-muted-foreground">2021 – 2025</p>
+              <p className="text-muted-foreground">CGPA: 8.325/10</p>
+              <div className="mt-4">
+                <p className="font-medium">Key Coursework:</p>
+                <ul className="mt-2 list-inside space-y-1 text-muted-foreground">
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                    Data Structures and Algorithms
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                    Machine Learning
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                    Data Science
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                    Java, Python Programming
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                    Object-Oriented Programming (OOP)
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                    SQL, Database Management
+                  </li>
+                  <li className="flex items-start">
+                    <span className="mr-2 mt-2 h-1.5 w-1.5 rounded-full bg-primary flex-shrink-0" />
+                    Web Development
+                  </li>
+                </ul>
+              </div>
+            </div>
           </div>
         </div>
       </motion.div>
