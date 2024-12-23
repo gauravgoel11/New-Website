@@ -19,8 +19,8 @@ const sizeClasses = {
 };
 
 const ProfileImage = ({
-  imageUrl = "https://images.unsplash.com/photo-1472099645785-5658abf4ff4e?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=facearea&facepad=2&w=500&h=500&q=80",
-  altText = "Professional headshot",
+  imageUrl = "https://api.dicebear.com/7.x/avataaars/svg?seed=gaurav",
+  altText = "Gaurav Goel - Software Developer",
   className = "",
   size = "xl",
 }: ProfileImageProps) => {
@@ -39,7 +39,7 @@ const ProfileImage = ({
             sizeClasses[size],
           )}
         >
-          PH
+          GG
         </AvatarFallback>
       </Avatar>
     </div>

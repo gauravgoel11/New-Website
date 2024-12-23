@@ -1,4 +1,5 @@
 import React from "react";
+import { useNavigate } from "react-router-dom";
 import NavBar from "./navigation/NavBar";
 import HeroSection from "./hero/HeroSection";
 
@@ -6,17 +7,21 @@ interface HomePageProps {
   name?: string;
   title?: string;
   tagline?: string;
-  onViewProjects?: () => void;
   onDownloadResume?: () => void;
 }
 
 const HomePage = ({
-  name = "John Doe",
-  title = "Full Stack Developer",
-  tagline = "Building beautiful and functional web experiences with modern technologies",
-  onViewProjects = () => console.log("View projects clicked"),
+  name = "Gaurav Goel",
+  title = "Software Developer",
+  tagline = "Building innovative solutions including websites, machine learning models, and PC software",
   onDownloadResume = () => console.log("Download resume clicked"),
 }: HomePageProps) => {
+  const navigate = useNavigate();
+
+  const handleViewProjects = () => {
+    navigate("/projects");
+  };
+
   return (
     <main className="min-h-screen w-full bg-background">
       <NavBar onDownloadResume={onDownloadResume} />
@@ -25,7 +30,7 @@ const HomePage = ({
           name={name}
           title={title}
           tagline={tagline}
-          onViewProjects={onViewProjects}
+          onViewProjects={handleViewProjects}
           onDownloadResume={onDownloadResume}
         />
       </div>

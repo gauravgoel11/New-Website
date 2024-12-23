@@ -6,10 +6,29 @@ import { Textarea } from "@/components/ui/textarea";
 import { Mail, Phone, MapPin, Send } from "lucide-react";
 
 const Contact = () => {
-  const handleSubmit = (e: React.FormEvent) => {
+  const scriptURL =
+    "https://script.google.com/macros/s/AKfycbxKCulg87tGrqtJ-xbtCNsJCQTieBQkW0JogwYXvLvztSSMLv2SH_tnawKGBntbXesu/exec";
+
+  const handleSubmit = async (e: React.FormEvent<HTMLFormElement>) => {
     e.preventDefault();
-    // Handle form submission
-    console.log("Form submitted");
+    const form = e.target as HTMLFormElement;
+
+    try {
+      const response = await fetch(scriptURL, {
+        method: "POST",
+        body: new FormData(form),
+      });
+
+      if (response.ok) {
+        alert("Thank you! Form is submitted");
+        window.location.reload();
+      } else {
+        throw new Error("Network response was not ok");
+      }
+    } catch (error) {
+      console.error("Error!", error);
+      alert("There was an error submitting the form");
+    }
   };
 
   return (
@@ -42,15 +61,25 @@ const Contact = () => {
               <div className="mt-6 space-y-4">
                 <div className="flex items-center gap-4">
                   <Mail className="h-5 w-5 text-primary" />
-                  <p className="text-muted-foreground">contact@example.com</p>
+                  <p className="text-muted-foreground">
+                    gauravgoel0008@gmail.com
+                  </p>
                 </div>
                 <div className="flex items-center gap-4">
                   <Phone className="h-5 w-5 text-primary" />
-                  <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                  <p className="text-muted-foreground">+91-8864998737</p>
                 </div>
-                <div className="flex items-center gap-4">
-                  <MapPin className="h-5 w-5 text-primary" />
-                  <p className="text-muted-foreground">San Francisco, CA</p>
+                <div className="flex items-start gap-4">
+                  <MapPin className="h-5 w-5 text-primary mt-1" />
+                  <p className="text-muted-foreground">
+                    Near, MAHARAJA AGRASEN INSTITUTE OF TECHNOLOGY,
+                    <br />
+                    Pocket 5, Sector 22, Rohini,
+                    <br />
+                    Delhi, India
+                    <br />
+                    110086
+                  </p>
                 </div>
               </div>
             </div>
@@ -62,49 +91,52 @@ const Contact = () => {
             animate={{ opacity: 1, x: 0 }}
             transition={{ delay: 0.3 }}
           >
-            <form onSubmit={handleSubmit} className="space-y-6">
-              <div className="grid gap-4 md:grid-cols-2">
-                <div className="space-y-2">
-                  <label htmlFor="name" className="text-sm font-medium">
-                    Name
-                  </label>
-                  <Input
-                    id="name"
-                    placeholder="Your name"
-                    required
-                    className="w-full"
-                  />
-                </div>
-                <div className="space-y-2">
-                  <label htmlFor="email" className="text-sm font-medium">
-                    Email
-                  </label>
-                  <Input
-                    id="email"
-                    type="email"
-                    placeholder="Your email"
-                    required
-                    className="w-full"
-                  />
-                </div>
-              </div>
+            <form onSubmit={handleSubmit} className="contactUsForm space-y-6">
               <div className="space-y-2">
-                <label htmlFor="subject" className="text-sm font-medium">
-                  Subject
+                <label htmlFor="Name" className="text-sm font-medium">
+                  Name
                 </label>
                 <Input
-                  id="subject"
-                  placeholder="Subject"
+                  id="Name"
+                  name="Name"
+                  placeholder="Your name"
                   required
                   className="w-full"
                 />
               </div>
               <div className="space-y-2">
-                <label htmlFor="message" className="text-sm font-medium">
+                <label htmlFor="Phone" className="text-sm font-medium">
+                  Phone
+                </label>
+                <Input
+                  id="Phone"
+                  name="Phone"
+                  type="tel"
+                  placeholder="Your phone number"
+                  required
+                  className="w-full"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="Email" className="text-sm font-medium">
+                  Email
+                </label>
+                <Input
+                  id="Email"
+                  name="Email"
+                  type="email"
+                  placeholder="Your email"
+                  required
+                  className="w-full"
+                />
+              </div>
+              <div className="space-y-2">
+                <label htmlFor="Message" className="text-sm font-medium">
                   Message
                 </label>
                 <Textarea
-                  id="message"
+                  id="Message"
+                  name="Message"
                   placeholder="Your message"
                   required
                   className="min-h-[150px] w-full"

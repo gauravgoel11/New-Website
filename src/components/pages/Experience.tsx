@@ -10,33 +10,13 @@ interface Experience {
 
 const experiences: Experience[] = [
   {
-    role: "Senior Full Stack Developer",
-    company: "Tech Solutions Inc.",
-    period: "2021 - Present",
+    role: "Software Developer Intern",
+    company: "Joule Universal",
+    period: "August 2024 – Current",
     description: [
-      "Led development of enterprise-level web applications using React and Node.js",
-      "Implemented CI/CD pipelines reducing deployment time by 40%",
-      "Mentored junior developers and conducted code reviews",
-    ],
-  },
-  {
-    role: "Full Stack Developer",
-    company: "Digital Innovations Ltd",
-    period: "2019 - 2021",
-    description: [
-      "Developed and maintained multiple client projects using modern web technologies",
-      "Optimized database queries improving application performance by 50%",
-      "Collaborated with design team to implement responsive UI/UX designs",
-    ],
-  },
-  {
-    role: "Frontend Developer",
-    company: "WebCraft Agency",
-    period: "2017 - 2019",
-    description: [
-      "Built responsive web applications using React and Redux",
-      "Implemented unit testing increasing code coverage to 85%",
-      "Worked directly with clients to gather requirements and provide solutions",
+      "Currently working as a Software Developer Intern",
+      "Developing and maintaining software applications",
+      "Collaborating with team members on various projects",
     ],
   },
 ];
