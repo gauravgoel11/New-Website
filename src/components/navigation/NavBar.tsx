@@ -35,7 +35,7 @@ const NavBar = ({
   const handleDownloadResume = () => {
     const link = document.createElement("a");
     link.href = resumePdf;
-    link.download = "Gaurav_Goel_Resume.pdf";
+    link.download = "/resume.pdf";
     document.body.appendChild(link);
     link.click();
     document.body.removeChild(link);
