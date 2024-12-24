@@ -3,7 +3,7 @@ import { cn } from "@/lib/utils";
 import { Button } from "@/components/ui/button";
 import { Download, Menu } from "lucide-react";
 import { Sheet, SheetContent, SheetTrigger } from "@/components/ui/sheet";
-import resumePdf from "/Gaurav_Goel_Resume.pdf";
+import resumePdf from "/resume.pdf";
 
 interface NavItem {
   label: string;
