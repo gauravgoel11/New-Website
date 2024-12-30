@@ -1,6 +1,6 @@
 {
   "name": "starter",
-  "homepage": "https://gauravgoel11.github.io/New-Website/",
+  "homepage": "https://gauravgoel11.github.io/New-Website",
   "private": true,
   "version": "0.0.0",
   "type": "module",
@@ -77,5 +77,4 @@
     "typescript": "^5.2.2",
     "vite": "^5.4.11"
   }
-  
 }
